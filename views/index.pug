@@ -2,7 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  form(action="/test/submit", method= 'post')
-    input(type="text", name="id")
-    button.btn.btn-primary(type='submit') Submit
+
+  if success
+    h2 = 'Successful validation'
+  else
+    if errors
+      ul
+        each element in errors
+          li this.msg
+    form(action="/submit", method= 'post')
+      input(name="email", type="text")
+      input(name="password", type="password")
+      
+      button.btn.btn-primary(type='submit') Submit
